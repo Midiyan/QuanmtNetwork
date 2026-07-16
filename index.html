@@ -645,32 +645,31 @@
     </script>
 </body>
 <style>
-<style>
-    /* PORŞE SEVİYE TASARIM */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.6s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter:blur(10px); }
-    .modal-content { background:linear-gradient(145deg, #15151a, #0a0a0c); padding:50px; border-radius:30px; width:420px; color:white; border:2px solid #8a2be2; box-shadow:0 0 40px rgba(138, 43, 226, 0.3); position:relative; }
+    /* QUANT NETWORK - ULTRA LÜKS TASARIM */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.6s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter:blur(15px); }
+    .modal-content { background:linear-gradient(160deg, #0a0a0c, #15151a); padding:50px; border-radius:35px; width:400px; color:white; border:2px solid #8a2be2; box-shadow:0 0 60px rgba(138, 43, 226, 0.4); position:relative; }
     .input-field { width:100%; padding:18px; margin:15px 0; background:#000; border:1px solid #333; border-radius:15px; color:#fff; font-size:16px; outline:none; transition:0.3s; }
-    .input-field:focus { border:1px solid #8a2be2; box-shadow:0 0 10px rgba(138, 43, 226, 0.2); }
-    .btn-login { background:linear-gradient(90deg, #8a2be2, #4b0082); color:white; padding:18px 40px; border:none; border-radius:15px; cursor:pointer; font-weight:bold; font-size:16px; width:100%; transition:0.4s; }
-    .btn-login:hover { transform:scale(1.02); box-shadow:0 0 20px #8a2be2; }
+    .input-field:focus { border:1px solid #8a2be2; box-shadow:0 0 15px rgba(138, 43, 226, 0.3); }
+    .btn-login { background:linear-gradient(90deg, #8a2be2, #4b0082); color:white; padding:18px 40px; border:none; border-radius:15px; cursor:pointer; font-weight:bold; font-size:16px; width:100%; transition:0.4s; text-transform:uppercase; letter-spacing:1px; }
+    .btn-login:hover { transform:scale(1.03); box-shadow:0 0 25px #8a2be2; }
 </style>
 
-<button onclick="openModal()" style="padding:12px 30px; background:transparent; border:2px solid #8a2be2; color:#fff; cursor:pointer; border-radius:50px; font-weight:bold; transition:0.3s; text-transform:uppercase; letter-spacing:2px;">Giriş Yap</button>
+<button onclick="openModal()" style="padding:12px 30px; background:transparent; border:2px solid #8a2be2; color:#fff; cursor:pointer; border-radius:50px; font-weight:bold; transition:0.3s; text-transform:uppercase; letter-spacing:2px; font-family:sans-serif;">Giriş Yap</button>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <div style="text-align:center; margin-bottom:30px;">
-            <div style="width:80px; height:80px; background:#8a2be2; margin:0 auto 20px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 20px #8a2be2;">⚡</div>
-            <h2 style="margin:0; font-size:28px;">ULTRA PORŞE</h2>
-            <p style="color:#8a2be2; font-weight:bold;">HESABINA ERİŞİM SAĞLA</p>
+            <div style="width:70px; height:70px; background:#8a2be2; margin:0 auto 20px; border-radius:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 30px #8a2be2; font-size:30px;">QN</div>
+            <h2 style="margin:0; font-size:26px; letter-spacing:2px; text-transform:uppercase;">QUANT NETWORK</h2>
+            <p style="color:#8a2be2; font-weight:bold; margin-top:5px;">SİSTEME ERİŞİM SAĞLA</p>
         </div>
         <input type="text" class="input-field" placeholder="Kullanıcı Adı">
         <input type="password" class="input-field" placeholder="Şifre">
-        <div style="display:flex; justify-content:space-between; margin:20px 0;">
-            <span style="font-size:12px; opacity:0.6;">Kayıt Ol</span>
-            <span style="font-size:12px; opacity:0.6;">Şifremi Unuttum</span>
+        <div style="display:flex; justify-content:space-between; margin:20px 0; font-size:12px; color:#666;">
+            <span style="cursor:pointer;">Kayıt Ol</span>
+            <span style="cursor:pointer;">Şifremi Unuttum</span>
         </div>
-        <button class="btn-login" onclick="alert('Babapiro Giriş Başarılı!')">GİRİŞ YAP</button>
+        <button class="btn-login" onclick="alert('Quant Network Giriş Başarılı!')">GİRİŞ YAP</button>
     </div>
 </div>
 
