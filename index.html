@@ -645,17 +645,21 @@
     </script>
 </body>
 <style>
-    /* QUANT NETWORK - PROFESYONEL SİSTEM */
+    /* QUANT NETWORK - GÜNCEL TASARIM */
     .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.5s; backdrop-filter:blur(10px); }
-    .modal-content { background:#111; padding:40px; border-radius:30px; width:380px; border:2px solid #8a2be2; color:white; text-align:center; }
+    .modal-content { background:#111; padding:40px; border-radius:30px; width:380px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; }
     .input-f { width:100%; padding:15px; margin:10px 0; background:#000; border:1px solid #333; border-radius:10px; color:white; box-sizing:border-box; }
     .btn-main { width:100%; padding:15px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:10px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; }
+    
+    /* X BUTONU */
+    .close-btn { position:absolute; top:20px; right:20px; cursor:pointer; font-size:24px; color:white; font-weight:bold; }
 </style>
 
 <button onclick="showLogin()" style="padding:10px 20px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:20px; cursor:pointer;">Giriş Yap</button>
 
 <div id="authModal" class="modal">
     <div class="modal-content" id="loginView">
+        <span class="close-btn" onclick="closeModal()">×</span>
         <h2 id="title">QUANT NETWORK</h2>
         <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
@@ -664,6 +668,7 @@
     </div>
 
     <div class="modal-content" id="signupView" style="display:none;">
+        <span class="close-btn" onclick="closeModal()">×</span>
         <h2>KAYIT OL</h2>
         <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="email" id="sign-mail" class="input-f" placeholder="Gmail">
@@ -675,6 +680,7 @@
 
 <script>
 function showLogin() { document.getElementById('authModal').style.display='flex'; setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10); }
+function closeModal() { document.getElementById('authModal').style.opacity='0'; setTimeout(()=>document.getElementById('authModal').style.display='none', 500); }
 function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
 
 function signup() {
@@ -693,7 +699,7 @@ function login() {
     let p = document.getElementById('log-pass').value;
     if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
         alert("Giriş Başarılı!");
-        document.getElementById('authModal').style.display = 'none';
+        closeModal();
     } else {
         alert("Hata: Hesap bulunamadı veya şifre yanlış!");
     }
