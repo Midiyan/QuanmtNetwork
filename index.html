@@ -645,3 +645,52 @@
     </script>
 </body>
 </html>
+<!-- GÜNCEL SCRIPT -->
+    <script>
+        // Sayfa açıldığında oturum kontrolü
+        window.onload = () => {
+            if(localStorage.getItem('user_name')) {
+                showDashboard();
+            }
+        };
+
+        // GİRİŞ YAP FONKSİYONU
+        function login() {
+            const name = document.getElementById('login-input').value;
+            if(name.length < 3) return alert("Lütfen geçerli bir isim gir!");
+            
+            localStorage.setItem('user_name', name);
+            localStorage.setItem('user_balance', 1000); // Başlangıç 1000TL
+            showDashboard();
+        }
+
+        // Dashboard'a geçiş
+        function showDashboard() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('main-site').style.display = 'block';
+            document.getElementById('main-site').style.opacity = '1';
+            updateBalanceDisplay();
+        }
+
+        // Bakiye güncelleme
+        function updateBalanceDisplay() {
+            const balance = localStorage.getItem('user_balance');
+            const name = localStorage.getItem('user_name');
+            // Navigasyona bakiye bilgisini ekle (HTML'de navbar içine <span id="nav-bal"> eklemelisin)
+            console.log(`Kullanıcı: ${name} | Bakiye: ${balance} TL`);
+        }
+
+        // KASA AÇMA FONKSİYONU
+        function openCrate(crateName, cost) {
+            let balance = parseInt(localStorage.getItem('user_balance'));
+            
+            if(balance >= cost) {
+                balance -= cost;
+                localStorage.setItem('user_balance', balance);
+                updateBalanceDisplay();
+                alert(`Tebrikler! ${crateName} açtınız. İçerik hesabınıza eklendi.`);
+            } else {
+                alert("Yetersiz bakiye! Marketten bakiye yükleyerek devam edebilirsin.");
+            }
+        }
+    </script>
