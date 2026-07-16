@@ -644,87 +644,112 @@
         }
     </script>
 </body>
-<!-- ULTRA MEGA BABAPİRO QUANT NETWORK SİSTEMİ -->
+<!-- QUANT NETWORK: ULTIMATE ENGINE - 250 SATIRLIK PROFESYONEL SİSTEM -->
 <style>
-    /* MODAL VE GEÇİŞ AYARLARI */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.6s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter:blur(15px); }
-    .modal-content { background:linear-gradient(160deg, #121215, #050505); padding:40px; border-radius:35px; width:400px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; box-shadow:0 0 50px rgba(138, 43, 226, 0.3); }
-    .input-f { width:100%; padding:18px; margin:12px 0; background:#000; border:1px solid #333; border-radius:15px; color:white; box-sizing:border-box; transition:0.3s; }
-    .input-f:focus { border:1px solid #8a2be2; outline:none; }
-    .btn-main { width:100%; padding:18px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:15px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; transition:0.4s; }
-    .btn-main:hover { transform:scale(1.02); box-shadow:0 0 20px #8a2be2; }
-    .close-btn { position:absolute; top:25px; right:30px; cursor:pointer; font-size:28px; color:#8a2be2; font-weight:bold; }
+    /* 1. ANIMASYONLAR */
+    @keyframes pulse { 0% { box-shadow: 0 0 15px #8a2be2; } 50% { box-shadow: 0 0 40px #8a2be2; } 100% { box-shadow: 0 0 15px #8a2be2; } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    /* 2. MODAL YAPISI */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:999999; justify-content:center; align-items:center; backdrop-filter:blur(15px); opacity:0; transition:0.5s; }
+    .modal-content { background:#0a0a0c; padding:45px; border-radius:40px; width:420px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; animation: pulse 4s infinite; }
     
-    /* PROFİL KARTI */
-    .profile-card { display:none; position:fixed; top:90px; right:30px; background:#111; border:2px solid #8a2be2; padding:25px; border-radius:25px; color:white; width:280px; z-index:999998; box-shadow:0 0 40px rgba(138,43,226,0.3); text-align:center; }
+    /* 3. INPUT VE BUTONLAR */
+    .input-f { width:100%; padding:18px; margin:12px 0; background:#050505; border:2px solid #222; border-radius:20px; color:white; font-size:16px; transition:0.3s; }
+    .input-f:focus { border:2px solid #8a2be2; outline:none; box-shadow: 0 0 10px rgba(138,43,226,0.3); }
+    .btn-main { width:100%; padding:18px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:20px; color:white; font-weight:bold; cursor:pointer; font-size:16px; transition:0.4s; }
+    .btn-main:hover { transform:scale(1.03); box-shadow:0 0 20px #8a2be2; }
+    
+    /* 4. PROFİL VE EXTRALAR */
+    .profile-card { display:none; position:fixed; top:100px; right:40px; background:#111; border:2px solid #8a2be2; padding:30px; border-radius:30px; color:white; width:280px; z-index:999998; box-shadow:0 0 40px rgba(138,43,226,0.3); text-align:center; }
+    .close-btn { position:absolute; top:25px; right:30px; cursor:pointer; font-size:28px; color:#8a2be2; }
+    .shake { animation: shake 0.3s; }
 </style>
 
-<!-- BAŞLANGIÇ BUTONU -->
-<button id="auth-btn" onclick="openAuth()" style="padding:12px 30px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:50px; cursor:pointer; font-weight:bold; letter-spacing:1px; transition:0.3s;">GİRİŞ YAP</button>
+<!-- BUTON -->
+<button id="auth-btn" onclick="openAuth()" style="padding:15px 40px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:50px; cursor:pointer; font-weight:bold; letter-spacing:2px; transition:0.4s;">GİRİŞ YAP</button>
 
-<!-- PROFİL PANELİ -->
+<!-- PROFİL KARTI -->
 <div id="profile-card" class="profile-card">
-    <h3 id="user-display" style="margin-top:0;">İsim</h3>
-    <p style="color:#aaa;">Bakiye: <span style="color:#00ff88;">150.00 TL</span></p>
-    <div style="height:5px; width:100%; background:#333; border-radius:5px; margin:15px 0;"><div style="height:5px; width:70%; background:#8a2be2; border-radius:5px;"></div></div>
-    <button onclick="logout()" style="width:100%; padding:10px; background:transparent; border:1px solid #ff4444; color:#ff4444; border-radius:10px; cursor:pointer;">ÇIKIŞ YAP</button>
+    <h3 id="user-display">Kullanıcı</h3>
+    <p style="color:#aaa; font-size:14px;">Quant Network Üyesi</p>
+    <div style="background:#222; padding:10px; border-radius:15px; margin:15px 0;">Bakiye: 500.00 TL</div>
+    <button onclick="logout()" style="width:100%; padding:10px; background:none; border:1px solid #ff4444; color:#ff4444; border-radius:10px; cursor:pointer;">ÇIKIŞ YAP</button>
 </div>
 
-<!-- GİRİŞ VE KAYIT MODALI -->
+<!-- MODAL -->
 <div id="authModal" class="modal">
     <div class="modal-content" id="loginView">
         <span class="close-btn" onclick="closeModal()">×</span>
-        <h2 style="letter-spacing:2px; margin-bottom:20px;">QUANT NETWORK</h2>
+        <h2 style="margin-bottom:25px;">QUANT NETWORK</h2>
         <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
         <button class="btn-main" onclick="login()">GİRİŞ YAP</button>
-        <p style="margin-top:20px; font-size:13px; cursor:pointer; opacity:0.7;" onclick="showSignup()">Hesabın yok mu? Kayıt ol</p>
+        <p style="margin-top:20px; font-size:13px; opacity:0.6; cursor:pointer;" onclick="showSignup()">Hesabın yok mu? Kayıt Ol</p>
     </div>
 
     <div class="modal-content" id="signupView" style="display:none;">
         <span class="close-btn" onclick="closeModal()">×</span>
-        <h2 style="margin-bottom:20px;">KAYIT OL</h2>
+        <h2 style="margin-bottom:25px;">KAYIT OL</h2>
         <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
+        <input type="email" id="sign-mail" class="input-f" placeholder="Gmail">
         <input type="password" id="sign-pass" class="input-f" placeholder="Şifre">
-        <input type="password" id="sign-pass2" class="input-f" placeholder="Şifre Tekrar">
+        <input type="password" id="sign-pass2" class="input-f" placeholder="Şifre Onayla">
         <button class="btn-main" onclick="signup()">HESAP OLUŞTUR</button>
     </div>
 </div>
 
 <script>
-function openAuth() {
-    if(localStorage.getItem('user')) {
-        let p = document.getElementById('profile-card');
-        p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-    } else {
-        document.getElementById('authModal').style.display='flex';
-        setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10);
+    // 5. MOTOR (JS)
+    function openAuth() {
+        if(localStorage.getItem('user')) {
+            let p = document.getElementById('profile-card');
+            p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+        } else {
+            document.getElementById('authModal').style.display='flex';
+            setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10);
+        }
     }
-}
-function closeModal() { document.getElementById('authModal').style.opacity='0'; setTimeout(()=>document.getElementById('authModal').style.display='none', 500); }
-function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
-function logout() { localStorage.clear(); location.reload(); }
 
-function signup() {
-    let n = document.getElementById('sign-name').value;
-    let p = document.getElementById('sign-pass').value;
-    let p2 = document.getElementById('sign-pass2').value;
-    if(p !== p2) { alert("Şifreler uyuşmuyor!"); return; }
-    localStorage.setItem('user', n);
-    localStorage.setItem('pass', p);
-    alert("Kayıt Başarılı!");
-    location.reload();
-}
-
-function login() {
-    let n = document.getElementById('log-name').value;
-    let p = document.getElementById('log-pass').value;
-    if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
-        document.getElementById('auth-btn').innerText = n;
-        document.getElementById('user-display').innerText = n;
-        closeModal();
-    } else {
-        alert("Hata: Hesap bulunamadı!");
+    function closeModal() {
+        document.getElementById('authModal').style.opacity='0';
+        setTimeout(()=>document.getElementById('authModal').style.display='none', 500);
     }
-}
+
+    function showSignup() {
+        document.getElementById('loginView').style.display='none';
+        document.getElementById('signupView').style.display='block';
+    }
+
+    function signup() {
+        let n = document.getElementById('sign-name').value;
+        let p = document.getElementById('sign-pass').value;
+        let p2 = document.getElementById('sign-pass2').value;
+        if(p !== p2) { alert("Şifreler uyuşmuyor!"); return; }
+        localStorage.setItem('user', n);
+        localStorage.setItem('pass', p);
+        alert("Başarılı! Lütfen giriş yap.");
+        location.reload();
+    }
+
+    function login() {
+        let n = document.getElementById('log-name').value;
+        let p = document.getElementById('log-pass').value;
+        let modal = document.querySelector('.modal-content');
+        
+        if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
+            document.getElementById('auth-btn').innerText = n;
+            document.getElementById('user-display').innerText = n;
+            closeModal();
+        } else {
+            modal.classList.add('shake');
+            setTimeout(()=>modal.classList.remove('shake'), 300);
+        }
+    }
+
+    function logout() {
+        localStorage.clear();
+        location.reload();
+    }
 </script>
