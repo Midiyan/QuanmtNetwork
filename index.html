@@ -644,7 +644,7 @@
         }
     </script>
 </body>
-<!-- QUANT NETWORK: ULTIMATE PRO SYSTEM -->
+<!-- QUANT NETWORK: ULTIMATE PRO SYSTEM V2 -->
 <style>
     @keyframes pulse { 0% { box-shadow: 0 0 15px #8a2be2; } 50% { box-shadow: 0 0 40px #8a2be2; } 100% { box-shadow: 0 0 15px #8a2be2; } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
@@ -655,6 +655,8 @@
     .input-f:focus { border:1px solid #8a2be2; }
     .btn-main { width:100%; padding:15px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:15px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; }
     .back-btn { background:transparent; border:1px solid #444; color:#888; margin-top:10px; padding:12px; width:100%; border-radius:15px; cursor:pointer; }
+    /* X BUTONU TASARIMI */
+    .close-x { position:absolute; top:20px; right:25px; font-size:24px; cursor:pointer; color:#8a2be2; font-weight:bold; }
     .shake { animation: shake 0.3s; }
 </style>
 
@@ -663,6 +665,7 @@
 <div id="authModal" class="modal">
     <!-- GİRİŞ EKRANI -->
     <div class="modal-content" id="loginView">
+        <span class="close-x" onclick="closeModal()">×</span>
         <h2 style="margin-bottom:20px;">QUANT NETWORK</h2>
         <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
@@ -672,6 +675,7 @@
 
     <!-- KAYIT EKRANI -->
     <div class="modal-content" id="signupView" style="display:none;">
+        <span class="close-x" onclick="closeModal()">×</span>
         <h2 style="margin-bottom:20px;">KAYIT OL</h2>
         <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="email" id="sign-mail" class="input-f" placeholder="Gmail Adresi">
@@ -684,6 +688,7 @@
 
 <script>
     function openAuth() { document.getElementById('authModal').style.display='flex'; setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10); }
+    function closeModal() { document.getElementById('authModal').style.opacity='0'; setTimeout(()=>document.getElementById('authModal').style.display='none', 500); }
     function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
     function showLogin() { document.getElementById('signupView').style.display='none'; document.getElementById('loginView').style.display='block'; }
 
@@ -700,7 +705,7 @@
         localStorage.setItem('pass', p);
         localStorage.setItem('mail', m);
         
-        alert("Kayıt Başarılı! Quant Network dünyasına hoş geldin.");
+        alert("Kayıt Başarılı!");
         showLogin();
     }
 
@@ -711,12 +716,12 @@
         
         if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
             document.getElementById('auth-btn').innerText = n;
-            document.getElementById('authModal').style.opacity = '0';
-            setTimeout(()=>document.getElementById('authModal').style.display='none', 500);
+            closeModal();
             console.log("QUANT NETWORK ACTIVE: BİREY DOĞRULANDI.");
         } else {
             modal.classList.add('shake');
             setTimeout(()=>modal.classList.remove('shake'), 300);
+            alert("Hata: Hesap bulunamadı!");
         }
     }
 </script>
