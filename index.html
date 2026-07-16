@@ -644,46 +644,34 @@
         }
     </script>
 </body>
-<!-- YENİ GİRİŞ SİSTEMİ -->
-<button id="auth-btn" onclick="openModal()" style="position:fixed; top:20px; right:20px; z-index:999999; padding:12px 24px; background:#00ff88; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:black; font-size:14px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">Giriş Yap</button>
+<!-- YENİ VE ŞIK GİRİŞ SİSTEMİ -->
+<button id="auth-btn" onclick="openModal()" style="position:fixed; top:20px; right:20px; z-index:999999; padding:12px 25px; background:transparent; border:1px solid #00ff88; color:#00ff88; border-radius:50px; cursor:pointer; font-weight:bold; transition:0.4s; backdrop-filter:blur(5px);">Giriş Yap</button>
 
-<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000000; justify-content:center; align-items:center;">
-    <div style="background:#111; padding:30px; border-radius:15px; width:300px; text-align:center; color:white; border:1px solid #333;">
-        <h2 style="margin-bottom:20px;">Kayıt Ol</h2>
-        <input type="text" id="in-name" placeholder="Kullanıcı Adı" style="width:100%; padding:12px; margin-bottom:10px; background:#222; border:1px solid #444; color:white; border-radius:5px; outline:none;">
-        <input type="email" id="in-email" placeholder="E-posta" style="width:100%; padding:12px; margin-bottom:20px; background:#222; border:1px solid #444; color:white; border-radius:5px; outline:none;">
-        <button onclick="saveUser()" style="width:100%; padding:12px; background:#00ff88; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Kayıt Ol</button>
-        <button onclick="document.getElementById('login-modal').style.display='none'" style="background:none; border:none; color:#666; cursor:pointer; margin-top:10px;">Kapat</button>
+<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000000; justify-content:center; align-items:center; opacity:0; transition:0.4s;">
+    <div style="background:#0e0e12; padding:40px; border-radius:25px; width:320px; text-align:center; color:white; border:1px solid #222; box-shadow:0 0 50px rgba(0,0,0,0.5);">
+        <h2 style="margin-bottom:25px; letter-spacing:1px;">Kayıt Ol</h2>
+        <input type="text" id="in-name" placeholder="Kullanıcı Adı" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:white; border-radius:10px; outline:none;">
+        <input type="email" id="in-email" placeholder="E-posta" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:white; border-radius:10px; outline:none;">
+        <input type="password" id="in-pass" placeholder="Şifre" style="width:100%; padding:12px; margin-bottom:25px; background:#1a1a1a; border:1px solid #333; color:white; border-radius:10px; outline:none;">
+        <button onclick="saveUser()" style="width:100%; padding:14px; background:#00ff88; border:none; border-radius:10px; cursor:pointer; font-weight:bold; color:#000; transition:0.3s;">KAYIT OL</button>
     </div>
-</div>
-
-<div id="profile-panel" style="display:none; position:fixed; top:70px; right:20px; background:#111; padding:20px; border-radius:15px; border:1px solid #333; color:white; z-index:999999; width:250px;">
-    <h3 id="p-name" style="margin:0;">İsim</h3>
-    <p id="p-email" style="color:#888; font-size:12px; margin-bottom:15px;">email@adres.com</p>
-    <div style="border-top:1px solid #333; padding-top:10px; font-size:14px;">
-        <p style="cursor:pointer; margin:10px 0;">Özet</p>
-        <p style="cursor:pointer; margin:10px 0;">Krediler</p>
-        <p style="cursor:pointer; margin:10px 0;">Ayarlar</p>
-    </div>
-    <button onclick="location.reload()" style="width:100%; background:transparent; border:1px solid #555; color:white; padding:8px; border-radius:5px; cursor:pointer; margin-top:10px;">Çıkış Yap</button>
 </div>
 
 <script>
-function openModal() { document.getElementById('login-modal').style.display = 'flex'; }
+function openModal() { 
+    const m = document.getElementById('login-modal');
+    m.style.display = 'flex';
+    setTimeout(() => { m.style.opacity = '1'; }, 10);
+}
 function saveUser() {
     const name = document.getElementById('in-name').value;
-    const email = document.getElementById('in-email').value;
-    if(name && email) {
+    if(name) {
         const btn = document.getElementById('auth-btn');
         btn.innerText = name;
-        btn.onclick = function() {
-            const p = document.getElementById('profile-panel');
-            p.style.display = (p.style.display === 'none') ? 'block' : 'none';
-        };
-        document.getElementById('p-name').innerText = name;
-        document.getElementById('p-email').innerText = email;
-        document.getElementById('login-modal').style.display = 'none';
-    } else { alert('Lütfen bilgileri doldur.'); }
+        btn.style.borderColor = '#fff';
+        btn.style.color = '#fff';
+        document.getElementById('login-modal').style.opacity = '0';
+        setTimeout(() => { document.getElementById('login-modal').style.display = 'none'; }, 400);
+    }
 }
 </script>
-</div>
