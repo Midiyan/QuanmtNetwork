@@ -4,17 +4,63 @@
     <meta charset="UTF-8">
     <title>QuanmtNetwork</title>
     <style>
-        body { background-color: #121212; color: white; text-align: center; font-family: sans-serif; padding-top: 50px; }
-        h1 { color: #00c853; }
-        .ip-box { background: #1e1e1e; padding: 20px; border: 2px solid #00c853; display: inline-block; border-radius: 10px; margin-top: 20px; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: white; }
+        /* Hareketli Arka Plan */
+        .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #1a1a2e, #0a0a0a); z-index: -1; animation: glow 10s infinite alternate; }
+        @keyframes glow { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(90deg); } }
+        
+        nav { padding: 20px; display: flex; justify-content: center; gap: 20px; background: rgba(0,0,0,0.5); }
+        nav a { color: #00ff88; text-decoration: none; font-weight: bold; cursor: pointer; }
+        
+        section { display: none; padding: 50px; text-align: center; }
+        #anasayfa { display: block; }
+        
+        .card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid #00ff88; display: inline-block; }
+        .ip { font-size: 1.5rem; color: #00ff88; margin: 20px 0; }
+        .status { margin-top: 10px; }
+        .open { color: #00ff88; } .closed { color: #ff4444; }
+        
+        .shop-item { margin: 10px; padding: 15px; background: #222; border-radius: 10px; display: inline-block; width: 150px; }
     </style>
 </head>
 <body>
-    <h1>QuanmtNetwork'e Hoş Geldin!</h1>
-    <p>Minecraft sunucumuz çok yakında burada.</p>
-    <div class="ip-box">
-        <h3>Sunucu IP:</h3>
-        <p>play.quanmtnetwork.com</p>
-    </div>
+    <div class="bg"></div>
+
+    <nav>
+        <a onclick="show('anasayfa')">Anasayfa</a>
+        <a onclick="show('magaza')">Mağaza</a>
+        <a href="https://discord.gg/rsnAZthTv" target="_blank">Discord</a>
+    </nav>
+
+    <section id="anasayfa">
+        <div class="card">
+            <h1>QUANMT NETWORK</h1>
+            <p>Towny, Boxmining ve SMP (Crystal PvP odaklı) dünyamıza hoş geldin!</p>
+            <div class="ip">quanmtsmp.aternos.me</div>
+            <div class="status">SMP: <span class="open">AÇIK</span></div>
+            <div class="status">Towny & Boxmining: <span class="closed">BAKIMDA</span></div>
+            <p>VİP ve özel eşyalar almak için mağazamızı ziyaret et!</p>
+        </div>
+    </section>
+
+    <section id="magaza">
+        <div class="card">
+            <h1>Market</h1>
+            <div class="shop-item">VIP<br>20TL</div>
+            <div class="shop-item">VIP+<br>30TL</div>
+            <div class="shop-item">MVIP<br>40TL</div>
+            <div class="shop-item">MVIP+<br>50TL</div>
+            <div class="shop-item">QVIP<br>60TL</div>
+            <div class="shop-item">QVIP+<br>70TL</div>
+        </div>
+    </section>
+
+    <script>
+        function show(id) {
+            document.getElementById('anasayfa').style.display = 'none';
+            document.getElementById('magaza').style.display = 'none';
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
