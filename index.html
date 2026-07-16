@@ -644,17 +644,46 @@
         }
     </script>
 </body>
-<!-- GİRİŞ SİSTEMİ (TAK-ÇALIŞTIR) -->
-<button onclick="document.getElementById('login-modal').style.display='flex'" style="position:fixed; top:20px; right:20px; z-index:999; background:rgba(0, 255, 136, 0.1); border:1px solid #00ff88; color:#00ff88; padding:10px 25px; border-radius:8px; cursor:pointer; font-weight:bold; backdrop-filter:blur(5px); transition:0.3s;">
-    Giriş Yap
-</button>
+!-- PROFİL PANELİ TÜRKÇE SİSTEMİ -->
+<div class="profile-container">
+    <div class="sidebar">
+        <h3>Hesabım</h3>
+        <ul>
+            <li><i class="fa-solid fa-user"></i> Profil</li>
+            <li><i class="fa-solid fa-cart-shopping"></i> Siparişler</li>
+            <li><i class="fa-solid fa-repeat"></i> Abonelikler</li>
+            <li><i class="fa-solid fa-wallet"></i> Bakiye Geçmişi</li>
+            <li><i class="fa-solid fa-folder-open"></i> Uygulamalar</li>
+        </ul>
+        <h3>Ayarlar</h3>
+        <ul>
+            <li><i class="fa-solid fa-user-pen"></i> Profili Düzenle</li>
+            <li><i class="fa-solid fa-shield"></i> Güvenlik</li>
+        </ul>
+    </div>
 
-<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; backdrop-filter:blur(8px); justify-content:center; align-items:center;">
-    <div style="background:#0e0e12; padding:30px; border-radius:20px; border:1px solid #333; width:320px; text-align:center; box-shadow:0 0 30px rgba(0,0,0,0.5);">
-        <h2 style="color:white; margin-bottom:20px;">Giriş Yap</h2>
-        <input type="text" placeholder="Kullanıcı Adı" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:white; border-radius:8px; outline:none;">
-        <input type="password" placeholder="Şifre" style="width:100%; padding:12px; margin-bottom:25px; background:#1a1a1a; border:1px solid #333; color:white; border-radius:8px; outline:none;">
-        <button style="width:100%; padding:12px; background:#00ff88; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:black; margin-bottom:10px;">GİRİŞ YAP</button>
-        <button onclick="document.getElementById('login-modal').style.display='none'" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem;">İptal</button>
+    <div class="main-content">
+        <div class="user-info">
+            <p><strong>E-Posta:</strong> kahegwhdbqudh86@gmail.com</p>
+            <p><strong>Bakiye:</strong> 0.00 ₺</p>
+            <p><strong>Kayıt Tarihi:</strong> 4 Nis 2026 12:39</p>
+            <p><strong>Rütbe:</strong> Oyuncu</p>
+            <button class="edit-btn">Profili Düzenle</button>
+        </div>
+
+        <div class="section-box">
+            <h4>Siparişler <span style="float:right; cursor:pointer;">Hepsini gör</span></h4>
+            <div class="error-msg">Dosya bulunamadı!</div>
+        </div>
     </div>
 </div>
+
+<style>
+    .profile-container { display: flex; gap: 20px; color: white; }
+    .sidebar { width: 250px; background: #111; padding: 20px; border-radius: 15px; }
+    .main-content { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    .user-info { background: #111; padding: 20px; border-radius: 15px; }
+    .section-box { background: #111; padding: 20px; border-radius: 15px; }
+    .error-msg { background: #ff4444; padding: 15px; border-radius: 8px; margin-top: 10px; }
+    .edit-btn { background: #00c853; border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer; }
+</style>
