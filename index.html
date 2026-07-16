@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>QuanmtNetwork | Giriş & Kayıt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Tasarım */
-        .auth-card { background: rgba(0,0,0,0.8); padding: 30px; border-radius: 20px; border: 1px solid #00ff88; color: white; width: 350px; text-align: center; }
-        input { display: block; width: 90%; margin: 10px auto; padding: 10px; border-radius: 5px; border: none; }
+        /* Önceki CSS kodların buraya gelecek... */
+        /* Ek olarak giriş/kayıt için basit stil */
+        .auth-card { background: rgba(0,0,0,0.9); padding: 40px; border-radius: 20px; border: 1px solid #00ff88; color: white; width: 350px; text-align: center; }
+        .input-field { display: block; width: 90%; margin: 10px auto; padding: 12px; border-radius: 5px; border: none; }
         .btn-auth { background: #00ff88; border: none; padding: 10px 20px; cursor: pointer; margin: 5px; border-radius: 5px; font-weight: bold; }
-        #captcha-display { font-size: 1.5rem; letter-spacing: 5px; font-weight: bold; color: #8a2be2; margin: 10px; }
+        #captcha-display { font-size: 1.8rem; letter-spacing: 10px; color: #00ff88; margin: 15px; background: rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
-    <!-- GİRİŞ EKRANI -->
-    <div id="landing" style="display:flex; justify-content:center; align-items:center; height:100vh;">
+    <!-- GİRİŞ / KAYIT EKRANI -->
+    <div id="landing" style="position:fixed; top:0; left:0; width:100%; height:100vh; background: #050508; display:flex; justify-content:center; align-items:center; z-index:1000;">
         <div class="auth-card" id="auth-box">
             <h2 id="auth-title">QUANMT NETWORK</h2>
             
-            <!-- Başlangıç Butonları -->
             <div id="start-btns">
                 <button class="btn-auth" onclick="showForm('login')">Giriş Yap</button>
                 <button class="btn-auth" onclick="showForm('register')">Kayıt Ol</button>
             </div>
 
-            <!-- Formlar -->
             <div id="form-area" style="display:none;">
-                <input type="text" id="reg-name" placeholder="İsim">
-                <input type="email" id="reg-email" placeholder="Gmail">
-                <input type="password" id="reg-pass" placeholder="Şifre">
-                <input type="password" id="reg-pass-conf" placeholder="Şifre (Tekrar)">
+                <input type="text" id="reg-name" class="input-field" placeholder="İsim">
+                <input type="email" id="reg-email" class="input-field" placeholder="Gmail">
+                <input type="password" id="reg-pass" class="input-field" placeholder="Şifre">
+                <input type="password" id="reg-pass-conf" class="input-field" placeholder="Şifre (Tekrar)">
                 
                 <div id="captcha-display"></div>
-                <input type="text" id="captcha-input" placeholder="Captcha Gir">
+                <input type="text" id="captcha-input" class="input-field" placeholder="Captcha Gir">
                 
-                <button class="btn-auth" onclick="handleAuth()">Tamamla</button>
+                <button class="btn-auth" onclick="handleAuth()">Onayla</button>
                 <button class="btn-auth" onclick="location.reload()">Geri</button>
             </div>
         </div>
     </div>
 
-    <!-- ANA SİTE -->
-    <div id="main-site" style="display:none; text-align:center; padding:50px; color:white;">
-        <h1 id="welcome-msg"></h1>
-        <button onclick="localStorage.clear(); location.reload()">Çıkış Yap</button>
+    <!-- SENİN ANA SİTEN -->
+    <div id="main-site" style="display:none; opacity:0; transition: opacity 1s;">
+        <!-- Buraya senin paylaştığın nav ve section'ları yapıştırabilirsin -->
+        <nav>
+            <a class="nav-logo">QUANMT NETWORK</a>
+            <div id="user-display" style="color: #00ff88; font-weight: bold;"></div>
+        </nav>
+        
+        <section id="anasayfa" style="display:block; text-align:center; padding: 100px;">
+            <h1>Hoş geldin, <span id="user-name-span"></span>!</h1>
+            <p>Sitemize giriş yaptın. Artık tüm özelliklere erişebilirsin.</p>
+            <button onclick="localStorage.clear(); location.reload()">Çıkış Yap</button>
+        </section>
     </div>
 
     <script>
@@ -55,13 +64,9 @@
             document.getElementById('start-btns').style.display = 'none';
             document.getElementById('form-area').style.display = 'block';
             if(mode === 'register') {
-                generateCaptcha();
+                generatedCaptcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+                document.getElementById('captcha-display').innerText = generatedCaptcha;
             }
-        }
-
-        function generateCaptcha() {
-            generatedCaptcha = Math.random().toString(36).substring(2, 8).toUpperCase();
-            document.getElementById('captcha-display').innerText = generatedCaptcha;
         }
 
         function handleAuth() {
@@ -73,9 +78,9 @@
             if(currentMode === 'register') {
                 if(pass !== passConf) return alert("Şifreler uyuşmuyor!");
                 if(captcha !== generatedCaptcha) return alert("Captcha hatalı!");
-                
                 localStorage.setItem('user_name', name);
-                alert("Kayıt başarılı!");
+            } else {
+                localStorage.setItem('user_name', name);
             }
             
             showDashboard();
@@ -84,9 +89,11 @@
         function showDashboard() {
             document.getElementById('landing').style.display = 'none';
             document.getElementById('main-site').style.display = 'block';
-            document.getElementById('welcome-msg').innerText = "Hoş geldin, " + localStorage.getItem('user_name');
+            document.getElementById('main-site').style.opacity = '1';
+            document.getElementById('user-name-span').innerText = localStorage.getItem('user_name');
         }
 
+        // Sayfa yenilendiğinde giriş kontrolü
         if(localStorage.getItem('user_name')) showDashboard();
     </script>
 </body>
