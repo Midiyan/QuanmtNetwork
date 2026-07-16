@@ -2,99 +2,65 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>QuanmtNetwork | Giriş & Kayıt</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Giriş Yap | QuanmtNetwork</title>
     <style>
-        /* Önceki CSS kodların buraya gelecek... */
-        /* Ek olarak giriş/kayıt için basit stil */
-        .auth-card { background: rgba(0,0,0,0.9); padding: 40px; border-radius: 20px; border: 1px solid #00ff88; color: white; width: 350px; text-align: center; }
-        .input-field { display: block; width: 90%; margin: 10px auto; padding: 12px; border-radius: 5px; border: none; }
-        .btn-auth { background: #00ff88; border: none; padding: 10px 20px; cursor: pointer; margin: 5px; border-radius: 5px; font-weight: bold; }
-        #captcha-display { font-size: 1.8rem; letter-spacing: 10px; color: #00ff88; margin: 15px; background: rgba(255,255,255,0.1); }
+        /* Giriş Ekranı Tasarımı */
+        #auth-screen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #050508; z-index: 9999; display: flex; 
+            justify-content: center; align-items: center; 
+        }
+        .auth-card { 
+            background: #111; padding: 30px; border-radius: 15px; 
+            border: 1px solid #333; text-align: center; color: white; width: 300px; 
+        }
+        .auth-input { 
+            width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; 
+            border: 1px solid #444; background: #000; color: white; 
+        }
+        .auth-btn { 
+            background: #00ff88; border: none; padding: 10px 20px; 
+            cursor: pointer; font-weight: bold; border-radius: 5px; width: 100%; 
+        }
+
+        /* Ana Site (Başlangıçta gizli) */
+        #main-site { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- GİRİŞ / KAYIT EKRANI -->
-    <div id="landing" style="position:fixed; top:0; left:0; width:100%; height:100vh; background: #050508; display:flex; justify-content:center; align-items:center; z-index:1000;">
-        <div class="auth-card" id="auth-box">
-            <h2 id="auth-title">QUANMT NETWORK</h2>
-            
-            <div id="start-btns">
-                <button class="btn-auth" onclick="showForm('login')">Giriş Yap</button>
-                <button class="btn-auth" onclick="showForm('register')">Kayıt Ol</button>
-            </div>
-
-            <div id="form-area" style="display:none;">
-                <input type="text" id="reg-name" class="input-field" placeholder="İsim">
-                <input type="email" id="reg-email" class="input-field" placeholder="Gmail">
-                <input type="password" id="reg-pass" class="input-field" placeholder="Şifre">
-                <input type="password" id="reg-pass-conf" class="input-field" placeholder="Şifre (Tekrar)">
-                
-                <div id="captcha-display"></div>
-                <input type="text" id="captcha-input" class="input-field" placeholder="Captcha Gir">
-                
-                <button class="btn-auth" onclick="handleAuth()">Onayla</button>
-                <button class="btn-auth" onclick="location.reload()">Geri</button>
-            </div>
+    <!-- GİRİŞ EKRANI -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <h2>GİRİŞ YAP</h2>
+            <input type="text" id="username" class="auth-input" placeholder="Kullanıcı Adı">
+            <input type="password" id="password" class="auth-input" placeholder="Şifre">
+            <button class="auth-btn" onclick="checkLogin()">Giriş Yap</button>
         </div>
     </div>
 
-    <!-- SENİN ANA SİTEN -->
-    <div id="main-site" style="display:none; opacity:0; transition: opacity 1s;">
-        <!-- Buraya senin paylaştığın nav ve section'ları yapıştırabilirsin -->
-        <nav>
-            <a class="nav-logo">QUANMT NETWORK</a>
-            <div id="user-display" style="color: #00ff88; font-weight: bold;"></div>
-        </nav>
+    <!-- SENİN KODUN BURAYA GELECEK -->
+    <div id="main-site">
         
-        <section id="anasayfa" style="display:block; text-align:center; padding: 100px;">
-            <h1>Hoş geldin, <span id="user-name-span"></span>!</h1>
-            <p>Sitemize giriş yaptın. Artık tüm özelliklere erişebilirsin.</p>
-            <button onclick="localStorage.clear(); location.reload()">Çıkış Yap</button>
-        </section>
+        <!-- KENDİ KODLARINI BURAYA YAPIŞTIR -->
+
     </div>
 
     <script>
-        let currentMode = '';
-        let generatedCaptcha = '';
-
-        function showForm(mode) {
-            currentMode = mode;
-            document.getElementById('start-btns').style.display = 'none';
-            document.getElementById('form-area').style.display = 'block';
-            if(mode === 'register') {
-                generatedCaptcha = Math.random().toString(36).substring(2, 8).toUpperCase();
-                document.getElementById('captcha-display').innerText = generatedCaptcha;
+        function checkLogin() {
+            const user = document.getElementById('username').value;
+            if(user) {
+                localStorage.setItem('isLoggedIn', 'true');
+                document.getElementById('auth-screen').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
             }
         }
 
-        function handleAuth() {
-            const name = document.getElementById('reg-name').value;
-            const pass = document.getElementById('reg-pass').value;
-            const passConf = document.getElementById('reg-pass-conf').value;
-            const captcha = document.getElementById('captcha-input').value;
-
-            if(currentMode === 'register') {
-                if(pass !== passConf) return alert("Şifreler uyuşmuyor!");
-                if(captcha !== generatedCaptcha) return alert("Captcha hatalı!");
-                localStorage.setItem('user_name', name);
-            } else {
-                localStorage.setItem('user_name', name);
-            }
-            
-            showDashboard();
-        }
-
-        function showDashboard() {
-            document.getElementById('landing').style.display = 'none';
+        // Sayfa yenilenirse giriş kontrolü
+        if(localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('auth-screen').style.display = 'none';
             document.getElementById('main-site').style.display = 'block';
-            document.getElementById('main-site').style.opacity = '1';
-            document.getElementById('user-name-span').innerText = localStorage.getItem('user_name');
         }
-
-        // Sayfa yenilendiğinde giriş kontrolü
-        if(localStorage.getItem('user_name')) showDashboard();
     </script>
 </body>
 </html>
