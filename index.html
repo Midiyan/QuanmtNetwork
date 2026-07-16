@@ -644,46 +644,29 @@
         }
     </script>
 </body>
-!-- PROFİL PANELİ TÜRKÇE SİSTEMİ -->
-<div class="profile-container">
-    <div class="sidebar">
-        <h3>Hesabım</h3>
-        <ul>
-            <li><i class="fa-solid fa-user"></i> Profil</li>
-            <li><i class="fa-solid fa-cart-shopping"></i> Siparişler</li>
-            <li><i class="fa-solid fa-repeat"></i> Abonelikler</li>
-            <li><i class="fa-solid fa-wallet"></i> Bakiye Geçmişi</li>
-            <li><i class="fa-solid fa-folder-open"></i> Uygulamalar</li>
-        </ul>
-        <h3>Ayarlar</h3>
-        <ul>
-            <li><i class="fa-solid fa-user-pen"></i> Profili Düzenle</li>
-            <li><i class="fa-solid fa-shield"></i> Güvenlik</li>
-        </ul>
-    </div>
+<!-- TÜRKÇE DİL VE GİRİŞ SİSTEMİ -->
+<script>
+    // Sayfa yüklendiğinde Almanca terimleri Türkçeye çevirir
+    window.onload = function() {
+        const translations = {
+            "Startseite": "Anasayfa",
+            "Profil": "Profil",
+            "Mein Konto": "Hesabım",
+            "Bestellungen": "Siparişler",
+            "Abonnements": "Abonelikler",
+            "Credit Historie": "Bakiye Geçmişi",
+            "Anwendungen": "Uygulamalar",
+            "Einstellungen": "Ayarlar",
+            "Profil bearbeiten": "Profili Düzenle",
+            "Sicherheit": "Güvenlik",
+            "Datei nicht gefunden!": "Dosya bulunamadı!"
+        };
 
-    <div class="main-content">
-        <div class="user-info">
-            <p><strong>E-Posta:</strong> kahegwhdbqudh86@gmail.com</p>
-            <p><strong>Bakiye:</strong> 0.00 ₺</p>
-            <p><strong>Kayıt Tarihi:</strong> 4 Nis 2026 12:39</p>
-            <p><strong>Rütbe:</strong> Oyuncu</p>
-            <button class="edit-btn">Profili Düzenle</button>
-        </div>
+        document.body.innerHTML = document.body.innerHTML.replace(new RegExp(Object.keys(translations).join("|"), "gi"), matched => translations[matched]);
+    };
+</script>
 
-        <div class="section-box">
-            <h4>Siparişler <span style="float:right; cursor:pointer;">Hepsini gör</span></h4>
-            <div class="error-msg">Dosya bulunamadı!</div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .profile-container { display: flex; gap: 20px; color: white; }
-    .sidebar { width: 250px; background: #111; padding: 20px; border-radius: 15px; }
-    .main-content { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-    .user-info { background: #111; padding: 20px; border-radius: 15px; }
-    .section-box { background: #111; padding: 20px; border-radius: 15px; }
-    .error-msg { background: #ff4444; padding: 15px; border-radius: 8px; margin-top: 10px; }
-    .edit-btn { background: #00c853; border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer; }
-</style>
+<!-- GİRİŞ YAP BUTONU (SADECE ANA SAYFA İÇİN) -->
+<button onclick="alert('Giriş paneli açılıyor...')" style="position:fixed; top:20px; right:20px; z-index:9999; background:#00ff88; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; color:black;">
+    Giriş Yap
+</button>
