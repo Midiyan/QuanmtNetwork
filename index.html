@@ -1,96 +1,61 @@
-from textwrap import dedent
-
-html = dedent("""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quanmt Network</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#111;color:#fff}
-header{position:fixed;top:0;width:100%;padding:20px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);display:flex;justify-content:center;gap:40px;z-index:5}
-header a{color:#fff;text-decoration:none;font-weight:bold}
-.hero{height:90vh;background:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80') center/cover;display:flex;align-items:center;justify-content:center;position:relative}
-.hero:before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55)}
-.hero .box{position:relative;text-align:center}
-.logo{font-size:60px;color:#4fc3ff;text-shadow:0 0 15px #4fc3ff}
-.info{display:flex;gap:30px;justify-content:center;margin:25px 0;flex-wrap:wrap}
-.card{background:rgba(20,20,20,.85);padding:18px 28px;border-radius:10px;border:1px solid #3498db}
-.btn{display:inline-block;background:#3daeff;color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;margin:8px}
-.container{max-width:1200px;margin:auto;padding:30px}
-.grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
-.panel{background:#1a1a1a;border-radius:10px;padding:20px}
-.news{margin-top:20px;background:#222;padding:18px;border-radius:10px}
-.product{background:#2dafff;padding:20px;border-radius:10px;color:#fff;text-align:center}
-footer{text-align:center;padding:25px;background:#151515;margin-top:30px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.logo{font-size:42px}}
-</style>
+    <meta charset="UTF-8">
+    <title>QUANMT NETWORK</title>
 </head>
-<body>
-<header>
-<a href="#">Anasayfa</a>
-<a href="#">Mağaza</a>
-<a href="#">Yardım</a>
-<a href="#">Destek</a>
-<a href="#">Giriş Yap</a>
-</header>
+<body style="margin: 0; background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif;">
 
-<section class="hero">
-<div class="box">
-<div class="logo">QUANMT NETWORK</div>
-<div class="info">
-<div class="card"><h2>60 Oyuncu Aktif</h2><p>oyna.quanmtnetwork.xyz</p></div>
-<div class="card"><h2>Discord</h2><p>discord.gg/quanmt</p></div>
-</div>
-<a class="btn" href="#">Giriş Yap</a>
-<a class="btn" href="#">Kayıt Ol</a>
-</div>
-</section>
+    <!-- Üst Navigasyon -->
+    <div style="display: flex; justify-content: center; gap: 40px; padding: 25px; background-color: #0a0a0a; border-bottom: 1px solid #222;">
+        <span style="cursor: pointer; color: #ccc;">Anasayfa</span>
+        <span style="cursor: pointer; color: #ccc;">Mağaza</span>
+        <span style="cursor: pointer; color: #ccc;">Yardım</span>
+        <span style="cursor: pointer; color: #0088ff; font-weight: bold;">Giriş Yap</span>
+    </div>
 
-<div class="container">
-<div class="grid">
-<div>
-<div class="panel">
-<h1>Quanmt Network</h1>
-<p>Topluluğumuza hoş geldin! BoxMining, SMP ve daha fazlası seni bekliyor.</p>
-</div>
+    <!-- Ana Banner Alanı -->
+    <div style="display: flex; max-width: 1100px; margin: 50px auto; gap: 20px; height: 250px;">
+        <!-- Sol Panel -->
+        <div style="flex: 3; background-color: #111; border: 1px solid #222; border-radius: 8px; padding: 40px;">
+            <h1 style="margin: 0;">QUANMT NETWORK</h1>
+            <p style="color: #888; margin-top: 10px;">Topluluğumuza katılmak için lütfen giriş yapın veya kayıt olun.</p>
+            <div style="margin-top: 25px;">
+                <button style="background: #0088ff; border: none; color: white; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-weight: bold;">Giriş Yap</button>
+                <button style="background: #222; border: none; color: white; padding: 12px 30px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Kayıt Ol</button>
+            </div>
+        </div>
+        <!-- Sağ Mağaza Kutusu -->
+        <div style="flex: 1; background: linear-gradient(180deg, #0088ff, #0055aa); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+            <h2 style="margin: 0;">MAĞAZA</h2>
+            <p>Alışverişe Başla</p>
+        </div>
+    </div>
 
-<div class="news">
-<h2>🎮 Yeni Düello Sistemi</h2>
-<p>1v1 düello sistemi eklendi. <b>/duel oyuncu</b> komutuyla rakibini düelloya davet edebilirsin.</p>
-</div>
+    <!-- Ürün Grid Sistemi -->
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Örnek bir kutu yapısı -->
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">VIP</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">20 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">VIP+</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">40 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">QVIP</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">100 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">KASA</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">15 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+    </div>
 
-<div class="news">
-<h2>⛏️ BoxMining Güncellemesi</h2>
-<p>Yeni madenler, kasalar ve günlük ödüller aktif edildi.</p>
-</div>
-</div>
-
-<div>
-<div class="product">
-<h2>Fırsat Ürünü</h2>
-<h1>VIP+</h1>
-<p>170 Kredi</p>
-</div>
-
-<div class="panel" style="margin-top:20px">
-<h2>En Çok Kredi Yükleyenler</h2>
-<hr style="margin:10px 0">
-<p>1. musstik — 2088 ₺</p>
-<p>2. Steve — 1250 ₺</p>
-<p>3. Alex — 950 ₺</p>
-</div>
-</div>
-</div>
-</div>
-
-<footer>© 2026 Quanmt Network</footer>
 </body>
 </html>
-""")
-
-path="/mnt/data/index.html"
-with open(path,"w",encoding="utf-8") as f:
-    f.write(html)
-print(path)
