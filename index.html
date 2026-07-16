@@ -644,43 +644,47 @@
         }
     </script>
 </body>
-<!-- TÜRKÇE DİL VE GİRİŞ SİSTEMİ -->
-<script>
-    // Sayfa yüklendiğinde Almanca terimleri Türkçeye çevirir
-    window.onload = function() {
-        const translations = {
-            "Startseite": "Anasayfa",
-            "Profil": "Profil",
-            "Mein Konto": "Hesabım",
-            "Bestellungen": "Siparişler",
-            "Abonnements": "Abonelikler",
-            "Credit Historie": "Bakiye Geçmişi",
-            "Anwendungen": "Uygulamalar",
-            "Einstellungen": "Ayarlar",
-            "Profil bearbeiten": "Profili Düzenle",
-            "Sicherheit": "Güvenlik",
-            "Datei nicht gefunden!": "Dosya bulunamadı!"
-        };
+<!-- GİRİŞ/KAYIT BUTONU -->
+<button id="auth-btn" onclick="openModal()" style="position:fixed; top:20px; right:20px; padding:10px 20px; background:#00ff88; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Giriş Yap</button>
 
-        document.body.innerHTML = document.body.innerHTML.replace(new RegExp(Object.keys(translations).join("|"), "gi"), matched => translations[matched]);
-    };
-</script>
-
-<!-- GİRİŞ YAP BUTONU (SADECE ANA SAYFA İÇİN) -->
-<button onclick="alert('Giriş paneli açılıyor...')" style="position:fixed; top:20px; right:20px; z-index:9999; background:#00ff88; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; color:black;">
-    Giriş Yap
-</button>
-<!-- GİRİŞ SİSTEMİ -->
-<button onclick="document.getElementById('login-modal').style.display='flex'" style="position:fixed; top:20px; right:20px; z-index:9999; background:#00ff88; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; color:black;">
-    Giriş Yap
-</button>
-
-<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; justify-content:center; align-items:center;">
-    <div style="background:#111; padding:30px; border-radius:15px; border:1px solid #333; width:300px; text-align:center; color:white;">
-        <h2 style="margin-bottom:20px;">Giriş Yap</h2>
-        <input type="text" placeholder="Kullanıcı Adı" style="width:100%; padding:10px; margin-bottom:10px; background:#222; border:1px solid #444; color:white; border-radius:5px;">
-        <input type="password" placeholder="Şifre" style="width:100%; padding:10px; margin-bottom:20px; background:#222; border:1px solid #444; color:white; border-radius:5px;">
-        <button onclick="alert('Giriş yapıldı!')" style="width:100%; padding:10px; background:#00ff88; border:none; border-radius:5px; cursor:pointer; font-weight:bold; margin-bottom:10px;">GİRİŞ YAP</button>
-        <button onclick="document.getElementById('login-modal').style.display='none'" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px;">Kapat</button>
+<!-- MODAL (KAYIT EKRANI) -->
+<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+    <div style="background:#111; padding:30px; border-radius:15px; width:300px; text-align:center; color:white;">
+        <h2>Kayıt Ol</h2>
+        <input type="text" id="in-name" placeholder="Kullanıcı Adı" style="width:100%; padding:10px; margin-bottom:10px; background:#222; border:none; color:white; border-radius:5px;">
+        <input type="email" id="in-email" placeholder="E-posta" style="width:100%; padding:10px; margin-bottom:20px; background:#222; border:none; color:white; border-radius:5px;">
+        <button onclick="saveUser()" style="width:100%; padding:10px; background:#00ff88; border:none; border-radius:5px; cursor:pointer;">Kayıt Ol</button>
     </div>
+</div>
+
+<!-- PROFİL PANELİ (İSMİ TIKLAYINCA AÇILIR) -->
+<div id="profile-panel" style="display:none; position:fixed; top:80px; right:20px; background:#111; padding:20px; border-radius:15px; border:1px solid #333; color:white;">
+    <h3 id="p-name">İsim</h3>
+    <p id="p-email" style="color:#888;">email@adres.com</p>
+    <div style="border-top:1px solid #333; margin:10px 0; padding-top:10px;">
+        <p>Özet</p>
+        <p>Krediler</p>
+        <p>Ayarlar</p>
+    </div>
+    <button onclick="location.reload()" style="background:none; border:none; color:red; cursor:pointer;">Çıkış Yap</button>
+</div>
+
+<script>
+function openModal() { document.getElementById('login-modal').style.display = 'flex'; }
+function saveUser() {
+    const name = document.getElementById('in-name').value;
+    const email = document.getElementById('in-email').value;
+    if(name && email) {
+        const btn = document.getElementById('auth-btn');
+        btn.innerText = name;
+        btn.onclick = function() {
+            const p = document.getElementById('profile-panel');
+            p.style.display = (p.style.display === 'none') ? 'block' : 'none';
+        };
+        document.getElementById('p-name').innerText = name;
+        document.getElementById('p-email').innerText = email;
+        document.getElementById('login-modal').style.display = 'none';
+    }
+}
+</script>
 </div>
