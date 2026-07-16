@@ -644,64 +644,52 @@
         }
     </script>
 </body>
+<!-- ULTRA PRO QUANT NETWORK PANEL -->
 <style>
-    /* QUANT NETWORK - GÜNCEL TASARIM */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.5s; backdrop-filter:blur(10px); }
-    .modal-content { background:#111; padding:40px; border-radius:30px; width:380px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; }
-    .input-f { width:100%; padding:15px; margin:10px 0; background:#000; border:1px solid #333; border-radius:10px; color:white; box-sizing:border-box; }
-    .btn-main { width:100%; padding:15px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:10px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; }
-    
-    /* X BUTONU */
-    .close-btn { position:absolute; top:20px; right:20px; cursor:pointer; font-size:24px; color:white; font-weight:bold; }
+    /* Profil Kartı Stili */
+    .profile-card { display:none; position:fixed; top:80px; right:20px; background:#111; border:2px solid #8a2be2; padding:20px; border-radius:20px; color:white; width:250px; z-index:999999; box-shadow:0 0 30px rgba(138,43,226,0.5); }
+    .status-dot { height:10px; width:100px; background:#00ff88; border-radius:10px; display:inline-block; margin-top:10px; }
 </style>
 
-<button onclick="showLogin()" style="padding:10px 20px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:20px; cursor:pointer;">Giriş Yap</button>
+<!-- Profil Butonu (İsim Görünecek) -->
+<button id="auth-btn" onclick="openProfile()" style="padding:10px 20px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:20px; cursor:pointer;">Giriş Yap</button>
 
-<div id="authModal" class="modal">
-    <div class="modal-content" id="loginView">
-        <span class="close-btn" onclick="closeModal()">×</span>
-        <h2 id="title">QUANT NETWORK</h2>
-        <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
-        <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
-        <button class="btn-main" onclick="login()">GİRİŞ YAP</button>
-        <p style="margin-top:15px; cursor:pointer; font-size:12px;" onclick="showSignup()">Kayıt Ol</p>
-    </div>
-
-    <div class="modal-content" id="signupView" style="display:none;">
-        <span class="close-btn" onclick="closeModal()">×</span>
-        <h2>KAYIT OL</h2>
-        <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
-        <input type="email" id="sign-mail" class="input-f" placeholder="Gmail">
-        <input type="password" id="sign-pass" class="input-f" placeholder="Şifre">
-        <input type="password" id="sign-pass2" class="input-f" placeholder="Şifreyi Onayla">
-        <button class="btn-main" onclick="signup()">HESAP OLUŞTUR</button>
-    </div>
+<!-- Profil Kartı (Giriş Sonrası Açılır) -->
+<div id="profile-card" class="profile-card">
+    <h3 id="user-display">Kullanıcı</h3>
+    <p>Bakiye: <span style="color:#00ff88;">150.00 TL</span></p>
+    <div class="status-dot"></div> <span style="font-size:12px;">Aktif Üye</span>
+    <button onclick="logout()" style="width:100%; margin-top:15px; background:red; border:none; color:white; padding:10px; border-radius:10px; cursor:pointer;">ÇIKIŞ YAP</button>
 </div>
 
-<script>
-function showLogin() { document.getElementById('authModal').style.display='flex'; setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10); }
-function closeModal() { document.getElementById('authModal').style.opacity='0'; setTimeout(()=>document.getElementById('authModal').style.display='none', 500); }
-function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
+<!-- (Buraya daha önce verdiğim modal kodlarını ekleyebilirsin, onlar aynı kalacak) -->
 
-function signup() {
-    let n = document.getElementById('sign-name').value;
-    let p = document.getElementById('sign-pass').value;
-    let p2 = document.getElementById('sign-pass2').value;
-    if(p !== p2) { alert("Şifreler uyuşmuyor!"); return; }
-    localStorage.setItem('user', n);
-    localStorage.setItem('pass', p);
-    alert("Kayıt Başarılı!");
+<script>
+function openProfile() {
+    let p = document.getElementById('profile-card');
+    // Eğer giriş yapılmamışsa giriş modalını aç, yapılmışsa profili göster
+    if(localStorage.getItem('user')) {
+        p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+    } else {
+        showLogin(); 
+    }
+}
+
+function logout() {
+    localStorage.clear();
     location.reload();
 }
 
+// Giriş başarılı olunca butonu isminle güncelle
 function login() {
     let n = document.getElementById('log-name').value;
     let p = document.getElementById('log-pass').value;
     if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
-        alert("Giriş Başarılı!");
+        document.getElementById('auth-btn').innerText = n;
+        document.getElementById('user-display').innerText = n;
         closeModal();
     } else {
-        alert("Hata: Hesap bulunamadı veya şifre yanlış!");
+        alert("Hata: Hesap bulunamadı!");
     }
 }
 </script>
