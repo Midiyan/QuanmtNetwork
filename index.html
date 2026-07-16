@@ -1,86 +1,61 @@
-# Generate a 647-line index.html file that includes the structure for QUANMT NETWORK
-# with the requested components: nav, hero/login, store, vip packages, crates,
-# animations, and professional styling, padding out to 647 lines.
-
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>QUANMT NETWORK | Profesyonel Sunucu</title>
-    <style>
-        /* Sitenin tüm tasarım mimarisi */
-        body { margin: 0; background: #050505; color: #fff; font-family: 'Inter', sans-serif; }
-        
-        /* 1. NAVİGASYON */
-        .nav-container { background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); padding: 20px; display: flex; justify-content: center; gap: 40px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 1000; }
-        .nav-link { color: #ccc; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .nav-link:hover { color: #0077ff; }
-
-        /* 2. HERO / GİRİŞ PANELİ */
-        .main-panel { max-width: 1200px; margin: 50px auto; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; height: 300px; }
-        .login-box { background: #111; border: 1px solid #222; border-radius: 12px; padding: 40px; }
-        .store-box { background: linear-gradient(135deg, #0077ff, #0055cc); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .store-box:hover { transform: scale(1.02); }
-
-        /* 3. MAĞAZA DÜZENİ */
-        .market-section { max-width: 1200px; margin: 50px auto; }
-        .grid-system { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .item-card { background: #111; border: 1px solid #222; padding: 25px; border-radius: 10px; text-align: center; transition: 0.4s; }
-        .item-card:hover { border-color: #0077ff; background: #161616; }
-        .price-tag { color: #0077ff; font-weight: bold; font-size: 1.2rem; margin: 15px 0; display: block; }
-        
-        /* Butonlar */
-        .btn-blue { background: #0077ff; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    </style>
+    <title>QUANMT NETWORK</title>
 </head>
-<body>
-    <nav class="nav-container">
-        <div class="nav-link">Anasayfa</div>
-        <div class="nav-link">Mağaza</div>
-        <div class="nav-link">Yardım</div>
-        <div class="nav-link">Destek</div>
-        <div class="nav-link" style="color:#0077ff">Giriş Yap</div>
-    </nav>
+<body style="margin: 0; background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif;">
 
-    <section class="main-panel">
-        <div class="login-box">
-            <h1>QUANMT NETWORK</h1>
-            <p>Dünyanın en iyi SMP ve Boxmining deneyimine hoş geldin. Hemen kayıt ol ve maceraya başla!</p>
-            <button class="btn-blue">Giriş Yap</button>
-            <button class="btn-blue" style="background:transparent; border:1px solid #333">Kayıt Ol</button>
-        </div>
-        <div class="store-box">
-            <h2>MAĞAZA</h2>
-            <p>Alışverişe Başla!</p>
-        </div>
-    </section>
+    <!-- Üst Navigasyon -->
+    <div style="display: flex; justify-content: center; gap: 40px; padding: 25px; background-color: #0a0a0a; border-bottom: 1px solid #222;">
+        <span style="cursor: pointer; color: #ccc;">Anasayfa</span>
+        <span style="cursor: pointer; color: #ccc;">Mağaza</span>
+        <span style="cursor: pointer; color: #ccc;">Yardım</span>
+        <span style="cursor: pointer; color: #0088ff; font-weight: bold;">Giriş Yap</span>
+    </div>
 
-    <section class="market-section">
-        <h2>VIP Paketleri</h2>
-        <div class="grid-system">
-            <div class="item-card"><h3>VIP</h3><span class="price-tag">20 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>VIP+</h3><span class="price-tag">40 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>MVIP</h3><span class="price-tag">60 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>MVIP+</h3><span class="price-tag">80 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>QVIP</h3><span class="price-tag">100 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>QVIP+</h3><span class="price-tag">150 TL</span><button class="btn-blue">Satın Al</button></div>
+    <!-- Ana Banner Alanı -->
+    <div style="display: flex; max-width: 1100px; margin: 50px auto; gap: 20px; height: 250px;">
+        <!-- Sol Panel -->
+        <div style="flex: 3; background-color: #111; border: 1px solid #222; border-radius: 8px; padding: 40px;">
+            <h1 style="margin: 0;">QUANMT NETWORK</h1>
+            <p style="color: #888; margin-top: 10px;">Topluluğumuza katılmak için lütfen giriş yapın veya kayıt olun.</p>
+            <div style="margin-top: 25px;">
+                <button style="background: #0088ff; border: none; color: white; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-weight: bold;">Giriş Yap</button>
+                <button style="background: #222; border: none; color: white; padding: 12px 30px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Kayıt Ol</button>
+            </div>
         </div>
-
-        <h2 style="margin-top:50px;">Özel Kasalar</h2>
-        <div class="grid-system">
-            <div class="item-card"><h3>Yaygın</h3><span class="price-tag">10 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>Crimison</h3><span class="price-tag">25 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>Prime</h3><span class="price-tag">35 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>QuanmtSMP</h3><span class="price-tag">50 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>Ametist</h3><span class="price-tag">65 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>Spawner</h3><span class="price-tag">75 TL</span><button class="btn-blue">Satın Al</button></div>
-            <div class="item-card"><h3>OY Kasası</h3><span class="price-tag">15 TL</span><button class="btn-blue">Satın Al</button></div>
+        <!-- Sağ Mağaza Kutusu -->
+        <div style="flex: 1; background: linear-gradient(180deg, #0088ff, #0055aa); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+            <h2 style="margin: 0;">MAĞAZA</h2>
+            <p>Alışverişe Başla</p>
         </div>
-    </section>
-"""
-# Padding to ~647 lines with comments
-padding = "\\n" * 500
-html_content += f"    <!-- Generated padding to reach required line count -->\\n{padding}\\n</body>\\n</html>"
+    </div>
 
-with open("index.html", "w") as f:
-    f.write(html_content)
+    <!-- Ürün Grid Sistemi -->
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Örnek bir kutu yapısı -->
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">VIP</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">20 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">VIP+</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">40 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">QVIP</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">100 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+        <div style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3 style="margin: 0;">KASA</h3>
+            <p style="color: #0088ff; font-weight: bold; margin: 15px 0;">15 TL</p>
+            <button style="width: 100%; background: #222; color: white; border: none; padding: 10px; cursor: pointer;">Satın Al</button>
+        </div>
+    </div>
+
+</body>
+</html>
