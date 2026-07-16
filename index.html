@@ -670,3 +670,17 @@
 <button onclick="alert('Giriş paneli açılıyor...')" style="position:fixed; top:20px; right:20px; z-index:9999; background:#00ff88; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; color:black;">
     Giriş Yap
 </button>
+<!-- GİRİŞ SİSTEMİ -->
+<button onclick="document.getElementById('login-modal').style.display='flex'" style="position:fixed; top:20px; right:20px; z-index:9999; background:#00ff88; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; color:black;">
+    Giriş Yap
+</button>
+
+<div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; justify-content:center; align-items:center;">
+    <div style="background:#111; padding:30px; border-radius:15px; border:1px solid #333; width:300px; text-align:center; color:white;">
+        <h2 style="margin-bottom:20px;">Giriş Yap</h2>
+        <input type="text" placeholder="Kullanıcı Adı" style="width:100%; padding:10px; margin-bottom:10px; background:#222; border:1px solid #444; color:white; border-radius:5px;">
+        <input type="password" placeholder="Şifre" style="width:100%; padding:10px; margin-bottom:20px; background:#222; border:1px solid #444; color:white; border-radius:5px;">
+        <button onclick="alert('Giriş yapıldı!')" style="width:100%; padding:10px; background:#00ff88; border:none; border-radius:5px; cursor:pointer; font-weight:bold; margin-bottom:10px;">GİRİŞ YAP</button>
+        <button onclick="document.getElementById('login-modal').style.display='none'" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px;">Kapat</button>
+    </div>
+</div>
