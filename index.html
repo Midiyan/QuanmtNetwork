@@ -644,17 +644,17 @@
         }
     </script>
 </body>
-<!-- QUANT NETWORK: ULTRA MEGA BABAPİRO - SON NOKTA -->
+<!-- QUANT NETWORK: ULTIMATE PRO SYSTEM -->
 <style>
     @keyframes pulse { 0% { box-shadow: 0 0 15px #8a2be2; } 50% { box-shadow: 0 0 40px #8a2be2; } 100% { box-shadow: 0 0 15px #8a2be2; } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
     
     .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.5s; backdrop-filter:blur(20px); }
-    .modal-content { background:#0a0a0c; padding:45px; border-radius:40px; width:400px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; animation: pulse 4s infinite; }
-    .input-f { width:100%; padding:18px; margin:12px 0; background:#050505; border:2px solid #222; border-radius:20px; color:white; font-size:16px; outline:none; }
-    .input-f:focus { border:2px solid #8a2be2; }
-    .btn-main { width:100%; padding:18px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:20px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; transition:0.4s; }
-    .back-btn { background:transparent; border:1px solid #555; color:#aaa; margin-top:10px; padding:10px; width:100%; border-radius:15px; cursor:pointer; }
+    .modal-content { background:#0a0a0c; padding:40px; border-radius:40px; width:400px; border:2px solid #8a2be2; color:white; text-align:center; position:relative; animation: pulse 4s infinite; }
+    .input-f { width:100%; padding:15px; margin:8px 0; background:#050505; border:1px solid #333; border-radius:15px; color:white; font-size:14px; outline:none; }
+    .input-f:focus { border:1px solid #8a2be2; }
+    .btn-main { width:100%; padding:15px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:15px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; }
+    .back-btn { background:transparent; border:1px solid #444; color:#888; margin-top:10px; padding:12px; width:100%; border-radius:15px; cursor:pointer; }
     .shake { animation: shake 0.3s; }
 </style>
 
@@ -667,14 +667,16 @@
         <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
         <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
         <button class="btn-main" onclick="login()">BAĞLAN</button>
-        <p style="margin-top:20px; cursor:pointer; opacity:0.6;" onclick="showSignup()">Hesabın yok mu? Kayıt Ol</p>
+        <p style="margin-top:20px; cursor:pointer; opacity:0.6; font-size:13px;" onclick="showSignup()">Hesabın yok mu? Kayıt Ol</p>
     </div>
 
     <!-- KAYIT EKRANI -->
     <div class="modal-content" id="signupView" style="display:none;">
         <h2 style="margin-bottom:20px;">KAYIT OL</h2>
         <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
+        <input type="email" id="sign-mail" class="input-f" placeholder="Gmail Adresi">
         <input type="password" id="sign-pass" class="input-f" placeholder="Şifre">
+        <input type="password" id="sign-pass2" class="input-f" placeholder="Şifre Onayla">
         <button class="btn-main" onclick="signup()">HESAP OLUŞTUR</button>
         <button class="back-btn" onclick="showLogin()">← GERİ DÖN</button>
     </div>
@@ -682,23 +684,23 @@
 
 <script>
     function openAuth() { document.getElementById('authModal').style.display='flex'; setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10); }
-    
-    function showSignup() {
-        document.getElementById('loginView').style.display='none';
-        document.getElementById('signupView').style.display='block';
-    }
-
-    function showLogin() {
-        document.getElementById('signupView').style.display='none';
-        document.getElementById('loginView').style.display='block';
-    }
+    function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
+    function showLogin() { document.getElementById('signupView').style.display='none'; document.getElementById('loginView').style.display='block'; }
 
     function signup() {
         let n = document.getElementById('sign-name').value;
+        let m = document.getElementById('sign-mail').value;
         let p = document.getElementById('sign-pass').value;
+        let p2 = document.getElementById('sign-pass2').value;
+
+        if(!n || !m || !p) { alert("Lütfen tüm alanları doldur!"); return; }
+        if(p !== p2) { alert("Şifreler uyuşmuyor!"); return; }
+        
         localStorage.setItem('user', n);
         localStorage.setItem('pass', p);
-        alert("Kayıt Başarılı! Quant Network'e hoş geldin.");
+        localStorage.setItem('mail', m);
+        
+        alert("Kayıt Başarılı! Quant Network dünyasına hoş geldin.");
         showLogin();
     }
 
@@ -711,7 +713,7 @@
             document.getElementById('auth-btn').innerText = n;
             document.getElementById('authModal').style.opacity = '0';
             setTimeout(()=>document.getElementById('authModal').style.display='none', 500);
-            console.log("QUANT NETWORK ACTIVE"); // İstediğin gizli özellik burada işliyor
+            console.log("QUANT NETWORK ACTIVE: BİREY DOĞRULANDI.");
         } else {
             modal.classList.add('shake');
             setTimeout(()=>modal.classList.remove('shake'), 300);
