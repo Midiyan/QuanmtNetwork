@@ -741,3 +741,31 @@
     <p>Mağaza içerikleri buraya gelecek...</p>
     <!-- Mevcut mağaza ürünlerin burada kalmaya devam edebilir -->
 </div>
+<!-- Mağaza Sekmesi -->
+<div id="magaza" class="tab-content" style="display:none; padding: 20px;">
+    
+    <!-- Giriş Paneli -->
+    <div class="auth-panel" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(138,43,226,0.3);">
+        <h3 style="margin-top:0;">Mağaza İşlemleri İçin</h3>
+        <p>Ürün satın almak veya bakiyeni görüntülemek için giriş yapmalısın.</p>
+        <button onclick="openAuth()" style="background: #8a2be2; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            <i class="fa-solid fa-right-to-bracket"></i> Hızlı Giriş Yap
+        </button>
+    </div>
+
+    <!-- Kasa Bölümü -->
+    <h2 style="text-align: center; margin-top: 30px;">Özel Kasalar</h2>
+    <div class="kasa-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        
+        <!-- Kasa Örneği -->
+        <div class="kasa-card" style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; width: 200px; text-align: center; border: 1px solid #ffd700;">
+            <i class="fa-solid fa-gem" style="font-size: 40px; color: #ffd700; margin-bottom: 10px;"></i>
+            <h3>Efsane Kasa</h3>
+            <p>İçinden çok özel eşyalar çıkabilir!</p>
+            <button style="background: #ffd700; color: black; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px;">
+                Satın Al
+            </button>
+        </div>
+
+    </div>
+</div>
