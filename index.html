@@ -645,38 +645,57 @@
     </script>
 </body>
 <style>
-    /* QUANT NETWORK - ULTRA LÜKS TASARIM */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.6s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter:blur(15px); }
-    .modal-content { background:linear-gradient(160deg, #0a0a0c, #15151a); padding:50px; border-radius:35px; width:400px; color:white; border:2px solid #8a2be2; box-shadow:0 0 60px rgba(138, 43, 226, 0.4); position:relative; }
-    .input-field { width:100%; padding:18px; margin:15px 0; background:#000; border:1px solid #333; border-radius:15px; color:#fff; font-size:16px; outline:none; transition:0.3s; }
-    .input-field:focus { border:1px solid #8a2be2; box-shadow:0 0 15px rgba(138, 43, 226, 0.3); }
-    .btn-login { background:linear-gradient(90deg, #8a2be2, #4b0082); color:white; padding:18px 40px; border:none; border-radius:15px; cursor:pointer; font-weight:bold; font-size:16px; width:100%; transition:0.4s; text-transform:uppercase; letter-spacing:1px; }
-    .btn-login:hover { transform:scale(1.03); box-shadow:0 0 25px #8a2be2; }
+    /* QUANT NETWORK - PROFESYONEL SİSTEM */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; opacity:0; transition:0.5s; backdrop-filter:blur(10px); }
+    .modal-content { background:#111; padding:40px; border-radius:30px; width:380px; border:2px solid #8a2be2; color:white; text-align:center; }
+    .input-f { width:100%; padding:15px; margin:10px 0; background:#000; border:1px solid #333; border-radius:10px; color:white; box-sizing:border-box; }
+    .btn-main { width:100%; padding:15px; background:linear-gradient(90deg, #8a2be2, #4b0082); border:none; border-radius:10px; color:white; font-weight:bold; cursor:pointer; margin-top:10px; }
 </style>
 
-<button onclick="openModal()" style="padding:12px 30px; background:transparent; border:2px solid #8a2be2; color:#fff; cursor:pointer; border-radius:50px; font-weight:bold; transition:0.3s; text-transform:uppercase; letter-spacing:2px; font-family:sans-serif;">Giriş Yap</button>
+<button onclick="showLogin()" style="padding:10px 20px; background:transparent; border:2px solid #8a2be2; color:white; border-radius:20px; cursor:pointer;">Giriş Yap</button>
 
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <div style="text-align:center; margin-bottom:30px;">
-            <div style="width:70px; height:70px; background:#8a2be2; margin:0 auto 20px; border-radius:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 30px #8a2be2; font-size:30px;">QN</div>
-            <h2 style="margin:0; font-size:26px; letter-spacing:2px; text-transform:uppercase;">QUANT NETWORK</h2>
-            <p style="color:#8a2be2; font-weight:bold; margin-top:5px;">SİSTEME ERİŞİM SAĞLA</p>
-        </div>
-        <input type="text" class="input-field" placeholder="Kullanıcı Adı">
-        <input type="password" class="input-field" placeholder="Şifre">
-        <div style="display:flex; justify-content:space-between; margin:20px 0; font-size:12px; color:#666;">
-            <span style="cursor:pointer;">Kayıt Ol</span>
-            <span style="cursor:pointer;">Şifremi Unuttum</span>
-        </div>
-        <button class="btn-login" onclick="alert('Quant Network Giriş Başarılı!')">GİRİŞ YAP</button>
+<div id="authModal" class="modal">
+    <div class="modal-content" id="loginView">
+        <h2 id="title">QUANT NETWORK</h2>
+        <input type="text" id="log-name" class="input-f" placeholder="Kullanıcı Adı">
+        <input type="password" id="log-pass" class="input-f" placeholder="Şifre">
+        <button class="btn-main" onclick="login()">GİRİŞ YAP</button>
+        <p style="margin-top:15px; cursor:pointer; font-size:12px;" onclick="showSignup()">Kayıt Ol</p>
+    </div>
+
+    <div class="modal-content" id="signupView" style="display:none;">
+        <h2>KAYIT OL</h2>
+        <input type="text" id="sign-name" class="input-f" placeholder="Kullanıcı Adı">
+        <input type="email" id="sign-mail" class="input-f" placeholder="Gmail">
+        <input type="password" id="sign-pass" class="input-f" placeholder="Şifre">
+        <input type="password" id="sign-pass2" class="input-f" placeholder="Şifreyi Onayla">
+        <button class="btn-main" onclick="signup()">HESAP OLUŞTUR</button>
     </div>
 </div>
 
 <script>
-function openModal() {
-    const m = document.getElementById('loginModal');
-    m.style.display = 'flex';
-    setTimeout(() => { m.style.opacity = '1'; }, 10);
+function showLogin() { document.getElementById('authModal').style.display='flex'; setTimeout(()=>document.getElementById('authModal').style.opacity='1', 10); }
+function showSignup() { document.getElementById('loginView').style.display='none'; document.getElementById('signupView').style.display='block'; }
+
+function signup() {
+    let n = document.getElementById('sign-name').value;
+    let p = document.getElementById('sign-pass').value;
+    let p2 = document.getElementById('sign-pass2').value;
+    if(p !== p2) { alert("Şifreler uyuşmuyor!"); return; }
+    localStorage.setItem('user', n);
+    localStorage.setItem('pass', p);
+    alert("Kayıt Başarılı!");
+    location.reload();
+}
+
+function login() {
+    let n = document.getElementById('log-name').value;
+    let p = document.getElementById('log-pass').value;
+    if(localStorage.getItem('user') === n && localStorage.getItem('pass') === p) {
+        alert("Giriş Başarılı!");
+        document.getElementById('authModal').style.display = 'none';
+    } else {
+        alert("Hata: Hesap bulunamadı veya şifre yanlış!");
+    }
 }
 </script>
